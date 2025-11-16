@@ -1,0 +1,2 @@
+# Control-de-proyecto-carro-con-servidor-HTTP-y-publicaci-n-MQTT
+Este proyecto implementa un servidor HTTP sobre un ESP32 para recibir instrucciones de movimiento mediante un endpoint /move y un endpoint /status para verificar su disponibilidad. Además, cada instrucción recibida se publica en un broker MQTT. No se controla ningún motor real; únicamente se imprime la instrucción en el puerto serial.
