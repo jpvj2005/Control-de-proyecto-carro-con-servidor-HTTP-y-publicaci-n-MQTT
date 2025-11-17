@@ -1,1 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación – Servidor HTTP + MQTT ESP32</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f5f5f5;
+        }
+
+        h1, h2, h3 {
+            color: #333;
+        }
+
+        .section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        code {
+            background: #eee;
+            padding: 3px 5px;
+            border-radius: 4px;
+        }
+
+        pre {
+            background: #eee;
+            padding: 10px;
+            border-radius: 6px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Documentación del Proyecto – Control de Carro con HTTP + MQTT</h1>
+
+    <div class="section">
+        <h2>Descripción General</h2>
+        <p>
+            Este ESP32 expone un servidor HTTP con dos endpoints principales:
+        </p>
+        <ul>
+            <li><code>/move</code> — Recibe instrucciones de movimiento.</li>
+            <li><code>/status</code> — Verifica si el servidor está disponible.</li>
+        </ul>
+        <p>
+            Cada instrucción enviada al endpoint <code>/move</code> se publica además en un broker MQTT en el tema configurado.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>Endpoint: /status</h2>
+        <p><strong>Método:</strong> GET</p>
+        <p>Devuelve un mensaje indicando que el servidor está funcionando.</p>
+        <pre>{
+  "status": "OK",
+  "message": "Servidor en ejecución"
+}</pre>
+    </div>
+
+    <div class="section">
+        <h2>Endpoint: /move</h2>
+        <p><strong>Método:</strong> POST</p>
+
+        <h3>Body esperado (JSON)</h3>
+<pre>{
+  "direction": "forward | backward | left | right",
+  "speed": 0-255,
+  "duration": 1-5
+}</pre>
+
+        <h3>Ejemplo:</h3>
+<pre>{
+  "direction": "forward",
+  "speed": 150,
+  "duration": 3
+}</pre>
+
+        <h3>Respuesta:</h3>
+<pre>{
+  "message": "Instrucción recibida",
+  "client_ip": "192.168.1.50"
+}</pre>
+
+    </div>
+
+    <div class="section">
+        <h2>MQTT</h2>
+        <p>
+            Cada instrucción enviada al endpoint <code>/move</code> se publica en un servidor MQTT con el siguiente payload:
+        </p>
+
+<pre>{
+  "direction": "forward",
+  "speed": 150,
+  "duration": 3,
+  "client_ip": "192.168.1.50"
+}</pre>
+
+        <p>
+            El ESP32 envía el mensaje al tema configurado en el código fuente, por ejemplo:
+        </p>
+        <code>esp32/car/move</code>
+    </div>
+
+    <div class="section">
+        <h2>Archivos incluidos en la carpeta <code>docs/</code></h2>
+        <ul>
+            <li><strong>index.html</strong> → este archivo</li>
+            <li><strong>openAPI.yaml</strong> → definición OpenAPI de los endpoints</li>
+            <li><strong>postman_collection.json</strong> → colección Postman para pruebas</li>
+            <li><strong>sequence_diagram.mmd</strong> (opcional) → diagrama de secuencia en Mermaid</li>
+        </ul>
+    </div>
+
+</body>
+</html>
 
