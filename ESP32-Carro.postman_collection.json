@@ -1,0 +1,39 @@
+{
+  "info": {
+    "_postman_id": "e5fbd910-519a-4b02-969e-0c2cb8d3b5b1",
+    "name": "ESP32 - Control Carro HTTP + MQTT",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Status del servidor",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://{{esp32_ip}}/status",
+          "protocol": "http",
+          "host": ["{{esp32_ip}}"],
+          "path": ["status"]
+        }
+      }
+    },
+    {
+      "name": "Mover carro",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"direction\": \"forward\",\n  \"speed\": 200,\n  \"duration\": 3\n}"
+        },
+        "url": {
+          "raw": "http://{{esp32_ip}}/move",
+          "protocol": "http",
+          "host": ["{{esp32_ip}}"],
+          "path": ["move"]
+        }
+      }
+    }
+  ]
+}
