@@ -6,7 +6,7 @@ El propósito principal es mostrar cómo:
 
 Exponer endpoints HTTP desde el ESP32.
 
-Validar datos recibidos (velocidad/dirección/duración).
+#Validar datos recibidos (velocidad/dirección/duración).
 
 Limitar duración a un máximo de 5 segundos.
 
