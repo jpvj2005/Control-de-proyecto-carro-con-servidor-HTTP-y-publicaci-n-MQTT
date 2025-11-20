@@ -51,5 +51,47 @@ Devuelve el estado del servidor HTTP y la conexión MQTT.
   "status": "ok",
   "mqtt_connected": true
 }
+```
 
+## 🚀 POST /move
+Recibe una instrucción de movimiento con los siguientes parámetros:
 
+Campo	Tipo	Descripción
+direction	string	“adelante”, “atras”, “izquierda”, “derecha”
+speed	number	Velocidad del movimiento (0–1023 recomendado)
+duration	number	Duración en ms (máx. 5000 ms)
+
+Ejemplo de petición
+```json
+{
+  "direction": "adelante",
+  "speed": 600,
+  "duration": 2000
+}
+```
+Ejemplo de respuesta
+```json
+{
+  "received": true,
+  "client_ip": "192.168.0.25",
+  "published_mqtt": true
+}
+```
+## 📤 Publicación MQTT
+Cada instrucción recibida en /move se publica automáticamente en un broker MQTT.
+
+📌 Tema usado
+```bash
+carro/control
+```
+🔎 Ejemplo de payload publicado
+```json
+Copiar código
+{
+  "direction": "adelante",
+  "speed": 600,
+  "duration": 2000,
+  "client_ip": "192.168.0.25",
+  "timestamp": 1737165821
+}
+```
