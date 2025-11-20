@@ -1,0 +1,107 @@
+{
+	"info": {
+		"_postman_id": "d3b7c2f1-98fa-4a3a-bf41-22c9e8b334cd",
+		"name": "CarControl_HTTP_MQTT_Extended",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "99999999"
+	},
+	"item": [
+		{
+			"name": "GET ping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ESP32_IP}}/ping",
+					"protocol": "http",
+					"host": ["{{ESP32_IP}}"],
+					"path": ["ping"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST configurar",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"motor_left\": 12,\n  \"motor_right\": 27,\n  \"frequency\": 1000\n}"
+				},
+				"url": {
+					"raw": "http://{{ESP32_IP}}/config",
+					"protocol": "http",
+					"host": ["{{ESP32_IP}}"],
+					"path": ["config"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST parar",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"stop\": true,\n  \"brake_strength\": 80\n}"
+				},
+				"url": {
+					"raw": "http://{{ESP32_IP}}/stop",
+					"protocol": "http",
+					"host": ["{{ESP32_IP}}"],
+					"path": ["stop"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET sensores",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ESP32_IP}}/sensors",
+					"protocol": "http",
+					"host": ["{{ESP32_IP}}"],
+					"path": ["sensors"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST girar",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"angle\": 45,\n  \"direction\": \"cw\",\n  \"speed\": 500\n}"
+				},
+				"url": {
+					"raw": "http://{{ESP32_IP}}/rotate",
+					"protocol": "http",
+					"host": ["{{ESP32_IP}}"],
+					"path": ["rotate"]
+				}
+			},
+			"response": []
+		}
+	]
+}
