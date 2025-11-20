@@ -51,3 +51,5 @@ Devuelve el estado del servidor HTTP y la conexión MQTT.
   "status": "ok",
   "mqtt_connected": true
 }
+
+
