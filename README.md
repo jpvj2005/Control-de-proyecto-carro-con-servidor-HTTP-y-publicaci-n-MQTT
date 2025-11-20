@@ -86,7 +86,6 @@ carro/control
 ```
 🔎 Ejemplo de payload publicado
 ```json
-Copiar código
 {
   "direction": "adelante",
   "speed": 600,
